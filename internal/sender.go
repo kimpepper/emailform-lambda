@@ -11,12 +11,14 @@ import (
 	"emailform/internal/types"
 )
 
+// Sender is responsible for sending emails.
 type Sender struct {
 	sesClient types.SesClientInterface
 	fromEmail string
 	toEmail   string
 }
 
+// NewSender creates a new Sender.
 func NewSender(sesClient types.SesClientInterface, fromEmail, toEmail string) *Sender {
 	return &Sender{
 		sesClient: sesClient,
