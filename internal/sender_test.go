@@ -15,6 +15,7 @@ import (
 	_ "github.com/stretchr/testify/mock"
 )
 
+// TestSendEmail tests the SendEmail function
 func TestSendEmail(t *testing.T) {
 	mockSesClient := new(mocks.MockSesClient)
 	sender := NewSender(mockSesClient, "foo", "bar")
@@ -33,6 +34,7 @@ func TestSendEmail(t *testing.T) {
 	mockSesClient.AssertExpectations(t)
 }
 
+// TestSendEmail_ErrorHandling tests the error handling of the SendEmail function
 func TestSendEmail_ErrorHandling(t *testing.T) {
 	mockSesClient := new(mocks.MockSesClient)
 	sender := NewSender(mockSesClient, "foo", "bar")

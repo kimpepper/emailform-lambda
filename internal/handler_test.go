@@ -13,6 +13,7 @@ import (
 	"emailform/internal/types"
 )
 
+// TestHandleRequest tests the HandleRequest function
 func TestHandleRequest(t *testing.T) {
 	tests := []struct {
 		name           string

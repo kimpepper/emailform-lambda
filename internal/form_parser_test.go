@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 )
 
+// TestParseFormData tests the ParseFormData method of the FormParser struct
 func TestParseFormData(t *testing.T) {
 	parser := NewFormParser()
 
@@ -32,7 +33,7 @@ func TestParseFormData(t *testing.T) {
 	}
 
 	ctx := context.Background()
-	err, resp, message := parser.ParseFormData(ctx, lambdaReq)
+	resp, message, err := parser.ParseFormData(ctx, lambdaReq)
 
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)

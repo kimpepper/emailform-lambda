@@ -9,11 +9,13 @@ import (
 	"emailform/internal/types"
 )
 
+// Handler handles the request.
 type Handler struct {
 	formParser types.FormParserInterface
 	sender     types.SenderInterface
 }
 
+// NewHandler creates a new Handler.
 func NewHandler(formParser types.FormParserInterface, sender types.SenderInterface) *Handler {
 	return &Handler{
 		formParser: formParser,
@@ -21,6 +23,7 @@ func NewHandler(formParser types.FormParserInterface, sender types.SenderInterfa
 	}
 }
 
+// HandleRequest handles the request.
 func (h *Handler) HandleRequest(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
 
 	if req.RequestContext.HTTP.Method != "POST" {
@@ -38,7 +41,7 @@ func (h *Handler) HandleRequest(ctx context.Context, req events.LambdaFunctionUR
 		}, fmt.Errorf("invalid content type: %s, only application/x-www-form-urlencoded is allowed", contentType)
 	}
 
-	err, response, msg := h.formParser.ParseFormData(ctx, req)
+	response, msg, err := h.formParser.ParseFormData(ctx, req)
 	if err != nil {
 		return response, err
 	}

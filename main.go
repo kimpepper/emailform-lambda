@@ -1,3 +1,4 @@
+// Entrypoint for the AWS Lambda function.
 package main
 
 import (
